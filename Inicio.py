@@ -1,6 +1,6 @@
 """
-☁️ WordCloud Studio — Nube de Palabras Profesional
-Aplicación Streamlit con diseño corporativo limpio
+☁️ WordCloud Studio — Nube de Palabras
+Aplicación Streamlit con diseño cálido y colorido
 
 Instalación:
     pip install streamlit wordcloud matplotlib pandas Pillow numpy
@@ -29,7 +29,7 @@ st.set_page_config(
 )
 
 # ─────────────────────────────────────────────
-# ESTILOS — diseño profesional / corporativo
+# ESTILOS — diseño cálido y colorido
 # ─────────────────────────────────────────────
 st.markdown("""
 <style>
@@ -39,153 +39,153 @@ st.markdown("""
         font-family: 'Inter', sans-serif;
     }
 
-    /* Fondo general gris muy claro */
+    /* Fondo general cálido, degradado suave */
     .stApp {
-        background-color: #f4f5f7;
+        background: linear-gradient(160deg, #fff8f0 0%, #ffedd9 45%, #ffe3d1 100%);
     }
 
-    /* Sidebar blanco con borde sutil */
+    /* Sidebar cálida con acento coral */
     [data-testid="stSidebar"] {
-        background-color: #ffffff !important;
-        border-right: 1px solid #dde1e7;
+        background-color: #fffaf3 !important;
+        border-right: 1px solid #ffd8ad;
     }
     [data-testid="stSidebar"] h2,
     [data-testid="stSidebar"] h3 {
-        color: #161a1d !important;
+        color: #c2410c !important;
         font-weight: 700 !important;
         font-size: 0.95rem !important;
         text-transform: uppercase !important;
         letter-spacing: 0.8px !important;
     }
     [data-testid="stSidebar"] label {
-        color: #4a5568 !important;
+        color: #7c4a2d !important;
         font-size: 0.85rem !important;
         font-weight: 500 !important;
     }
     [data-testid="stSidebar"] p {
-        color: #6b7280 !important;
+        color: #92603f !important;
         font-size: 0.88rem !important;
     }
     [data-testid="stSidebar"] hr {
-        border-color: #e5e7eb !important;
+        border-color: #ffd8ad !important;
         margin: 16px 0 !important;
     }
 
     /* Inputs */
     textarea, input[type="text"] {
         background-color: #ffffff !important;
-        border: 1px solid #d1d5db !important;
-        border-radius: 6px !important;
-        color: #111827 !important;
+        border: 1px solid #ffcf9f !important;
+        border-radius: 10px !important;
+        color: #4a2b12 !important;
         font-family: 'Inter', sans-serif !important;
         font-size: 0.9rem !important;
     }
     textarea:focus, input[type="text"]:focus {
-        border-color: #374151 !important;
-        box-shadow: 0 0 0 2px rgba(55,65,81,0.12) !important;
+        border-color: #f2542d !important;
+        box-shadow: 0 0 0 2px rgba(242,84,45,0.15) !important;
     }
 
     /* Selectbox */
     [data-baseweb="select"] > div {
         background: #ffffff !important;
-        border: 1px solid #d1d5db !important;
-        border-radius: 6px !important;
-        color: #111827 !important;
+        border: 1px solid #ffcf9f !important;
+        border-radius: 10px !important;
+        color: #4a2b12 !important;
         font-size: 0.9rem !important;
     }
 
     /* Títulos */
     h1 {
         font-family: 'Inter', sans-serif !important;
-        color: #111827 !important;
-        font-weight: 700 !important;
+        color: #c2410c !important;
+        font-weight: 800 !important;
         letter-spacing: -0.5px !important;
     }
     h2, h3 {
         font-family: 'Inter', sans-serif !important;
-        color: #1f2937 !important;
-        font-weight: 600 !important;
+        color: #9a3412 !important;
+        font-weight: 700 !important;
     }
     p, li {
-        color: #374151 !important;
+        color: #5b3a24 !important;
         font-size: 0.95rem !important;
         line-height: 1.65 !important;
     }
 
-    /* Botón principal — antracita sólido */
+    /* Botón principal — degradado coral/naranja */
     .stButton > button {
-        background: #1f2937 !important;
+        background: linear-gradient(135deg, #fb7f3f 0%, #f2542d 100%) !important;
         color: #ffffff !important;
         border: none !important;
-        border-radius: 6px !important;
+        border-radius: 10px !important;
         font-family: 'Inter', sans-serif !important;
-        font-weight: 600 !important;
-        font-size: 0.9rem !important;
+        font-weight: 700 !important;
+        font-size: 0.92rem !important;
         letter-spacing: 0.3px !important;
-        padding: 0.6rem 1.4rem !important;
+        padding: 0.65rem 1.4rem !important;
         width: 100% !important;
-        transition: background 0.2s ease, box-shadow 0.2s ease !important;
+        transition: transform 0.15s ease, box-shadow 0.2s ease !important;
     }
     .stButton > button:hover {
-        background: #111827 !important;
-        box-shadow: 0 2px 12px rgba(17,24,39,0.25) !important;
+        transform: translateY(-1px) !important;
+        box-shadow: 0 6px 16px rgba(242,84,45,0.35) !important;
     }
 
-    /* Botón descarga — gris slate */
+    /* Botón descarga — teal cálido */
     [data-testid="stDownloadButton"] button {
-        background: #374151 !important;
+        background: linear-gradient(135deg, #17a398 0%, #0f9b8e 100%) !important;
         color: #ffffff !important;
         border: none !important;
-        border-radius: 6px !important;
-        font-weight: 600 !important;
+        border-radius: 10px !important;
+        font-weight: 700 !important;
         font-size: 0.88rem !important;
-        transition: background 0.2s !important;
+        transition: transform 0.15s ease !important;
     }
     [data-testid="stDownloadButton"] button:hover {
-        background: #1f2937 !important;
+        transform: translateY(-1px) !important;
     }
 
     /* Métricas */
     [data-testid="metric-container"] {
-        background: #ffffff;
-        border: 1px solid #e5e7eb;
-        border-top: 3px solid #374151;
-        border-radius: 8px;
+        background: #fffaf3;
+        border: 1px solid #ffdcb3;
+        border-top: 4px solid #f2542d;
+        border-radius: 12px;
         padding: 18px 22px;
-        box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+        box-shadow: 0 2px 10px rgba(242,84,45,0.08);
     }
     [data-testid="metric-container"] label {
-        color: #6b7280 !important;
+        color: #c2703f !important;
         font-size: 0.78rem !important;
-        font-weight: 600 !important;
+        font-weight: 700 !important;
         text-transform: uppercase !important;
         letter-spacing: 0.6px !important;
     }
     [data-testid="metric-container"] [data-testid="stMetricValue"] {
-        color: #111827 !important;
-        font-weight: 700 !important;
+        color: #9a3412 !important;
+        font-weight: 800 !important;
         font-size: 1.55rem !important;
     }
 
     /* Header */
     .header-card {
-        background: #ffffff;
-        border: 1px solid #e5e7eb;
-        border-left: 5px solid #1f2937;
-        border-radius: 8px;
+        background: #fffaf3;
+        border: 1px solid #ffdcb3;
+        border-left: 6px solid #f2542d;
+        border-radius: 14px;
         padding: 28px 36px;
         margin-bottom: 24px;
-        box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+        box-shadow: 0 3px 14px rgba(242,84,45,0.1);
     }
 
     /* Sección card */
     .section-card {
-        background: #ffffff;
-        border: 1px solid #e5e7eb;
-        border-radius: 8px;
+        background: #fffaf3;
+        border: 1px solid #ffdcb3;
+        border-radius: 14px;
         padding: 24px 28px;
         margin-bottom: 16px;
-        box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+        box-shadow: 0 2px 10px rgba(242,84,45,0.06);
     }
 
     /* Barras de frecuencia */
@@ -195,16 +195,16 @@ st.markdown("""
         gap: 14px;
         padding: 7px 14px;
         margin: 4px 0;
-        background: #f9fafb;
-        border: 1px solid #f3f4f6;
-        border-radius: 6px;
+        background: #fff3e6;
+        border: 1px solid #ffe4c4;
+        border-radius: 10px;
         transition: background 0.15s;
     }
-    .freq-row:hover { background: #f3f4f6; }
+    .freq-row:hover { background: #ffe9d3; }
 
     .freq-bar {
         height: 8px;
-        background: #374151;
+        background: linear-gradient(90deg, #fb7f3f, #f2542d);
         border-radius: 4px;
         display: inline-block;
         vertical-align: middle;
@@ -212,13 +212,13 @@ st.markdown("""
 
     /* Tag de ranking */
     .rank-tag {
-        background: #f3f4f6;
-        border: 1px solid #e5e7eb;
-        border-radius: 4px;
+        background: #ffe4c4;
+        border: 1px solid #ffcf9f;
+        border-radius: 6px;
         padding: 1px 8px;
         font-size: 0.75rem;
         font-weight: 700;
-        color: #6b7280;
+        color: #c2410c;
         font-family: 'IBM Plex Mono', monospace;
         min-width: 36px;
         text-align: center;
@@ -230,41 +230,41 @@ st.markdown("""
         align-items: flex-start;
         gap: 12px;
         padding: 12px 16px;
-        background: #f9fafb;
-        border: 1px solid #e5e7eb;
-        border-radius: 6px;
+        background: #fff3e6;
+        border: 1px solid #ffe4c4;
+        border-radius: 10px;
         margin-bottom: 8px;
     }
 
     /* Uso cards */
     .uso-tag {
         display: inline-block;
-        background: #f3f4f6;
-        border: 1px solid #e5e7eb;
+        background: #ffe9d3;
+        border: 1px solid #ffcf9f;
         border-radius: 20px;
         padding: 5px 14px;
         font-size: 0.85rem;
-        font-weight: 500;
-        color: #374151;
+        font-weight: 600;
+        color: #9a3412;
         margin: 4px 3px;
     }
 
     /* Expander */
     div[data-testid="stExpander"] {
-        border: 1px solid #e5e7eb !important;
-        border-radius: 8px !important;
-        background: #ffffff !important;
+        border: 1px solid #ffdcb3 !important;
+        border-radius: 12px !important;
+        background: #fffaf3 !important;
     }
 
-    hr { border-color: #e5e7eb !important; }
+    hr { border-color: #ffdcb3 !important; }
 
     /* Nube container */
     .wc-container {
-        background: #ffffff;
-        border: 1px solid #e5e7eb;
-        border-radius: 8px;
+        background: #fffaf3;
+        border: 1px solid #ffdcb3;
+        border-radius: 14px;
         padding: 20px;
-        box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+        box-shadow: 0 3px 14px rgba(242,84,45,0.08);
         margin-bottom: 16px;
     }
 </style>
@@ -377,7 +377,7 @@ with st.sidebar:
     st.divider()
 
     # ── Fuente ──
-    st.markdown("### FUENTE DE TEXTO")
+    st.markdown("### ¿De dónde sacamos el texto?")
     fuente = st.radio("fuente", ["✍️ Escribir / Pegar", "📂 Subir archivo"],
                       label_visibility="collapsed")
     texto_input = ""
@@ -385,9 +385,9 @@ with st.sidebar:
     if fuente == "✍️ Escribir / Pegar":
         texto_input = st.text_area(
             "Texto:", height=190,
-            placeholder="Pega aquí un artículo, reseña, discurso, encuesta...")
+            placeholder="Pega aquí lo que quieras: un artículo, una reseña, un discurso, respuestas de una encuesta...")
 
-        with st.expander("Cargar texto de ejemplo"):
+        with st.expander("¿No tienes texto a mano? Prueba con uno de estos"):
             ejemplos = {
                 "Inteligencia Artificial": """
                 La inteligencia artificial es una disciplina de la informática orientada a desarrollar
@@ -423,7 +423,7 @@ with st.sidebar:
             }
             ejemplo_sel = st.selectbox("Ejemplo:", list(ejemplos.keys()),
                                        label_visibility="collapsed")
-            if st.button("Cargar texto seleccionado"):
+            if st.button("Usar este texto"):
                 st.session_state["texto_ejemplo"] = ejemplos[ejemplo_sel]
                 st.rerun()
 
@@ -440,26 +440,26 @@ with st.sidebar:
                 df_csv = pd.read_csv(archivo)
                 col_txt = st.selectbox("Columna de texto:", df_csv.columns.tolist())
                 texto_input = " ".join(df_csv[col_txt].dropna().astype(str).tolist())
-            st.success(f"Archivo cargado — {len(texto_input):,} caracteres")
+            st.success(f"¡Listo! Cargamos {len(texto_input):,} caracteres")
 
     st.divider()
 
     # ── Procesamiento ──
-    st.markdown("### PROCESAMIENTO")
-    idioma         = st.selectbox("Stopwords:", ["Español", "Inglés", "Ambos", "Ninguno"])
-    min_longitud   = st.slider("Longitud mínima de palabra", 2, 8, 3)
-    palabras_extra = st.text_input("Excluir palabras adicionales:",
+    st.markdown("### Ajustes de limpieza")
+    idioma         = st.selectbox("Ignorar palabras vacías (stopwords):", ["Español", "Inglés", "Ambos", "Ninguno"])
+    min_longitud   = st.slider("Largo mínimo de cada palabra", 2, 8, 3)
+    palabras_extra = st.text_input("¿Alguna palabra más que quieras excluir?",
                                    placeholder="ej: también, así, aquí")
 
     st.divider()
 
     # ── Apariencia ──
-    st.markdown("### APARIENCIA")
-    paleta_sel  = st.selectbox("Paleta:", list(PALETAS.keys()))
+    st.markdown("### Cómo se va a ver")
+    paleta_sel  = st.selectbox("Paleta de colores:", list(PALETAS.keys()))
     fondo_sel   = st.radio("Fondo:", ["Blanco", "Negro"], horizontal=True)
     fondo_color = "white" if fondo_sel == "Blanco" else "black"
     forma_sel   = st.selectbox("Forma:", list(FORMAS.keys()))
-    max_words   = st.slider("Máximo de palabras:", 20, 200, 80)
+    max_words   = st.slider("¿Cuántas palabras como máximo?", 20, 200, 80)
 
     st.divider()
     generar = st.button("GENERAR NUBE  ↗", use_container_width=True)
@@ -473,8 +473,8 @@ with st.sidebar:
 st.markdown("""
 <div class="header-card">
     <h1 style="margin:0; font-size:1.9rem;">☁️ WordCloud Studio</h1>
-    <p style="margin:6px 0 0 0; color:#6b7280 !important; font-size:0.97rem;">
-        Análisis de frecuencia léxica y visualización de nubes de palabras
+    <p style="margin:6px 0 0 0; color:#9a5a34 !important; font-size:0.97rem;">
+        Pega un texto y descubre en segundos qué palabras lo dominan
     </p>
 </div>
 """, unsafe_allow_html=True)
@@ -485,34 +485,34 @@ if not generar or not texto_input.strip():
 
     with col_izq:
         st.markdown('<div class="section-card">', unsafe_allow_html=True)
-        st.markdown("### Acerca de esta herramienta")
+        st.markdown("### ¿Qué es esto?")
         st.markdown("""
-        Una **nube de palabras** representa visualmente la frecuencia de términos en un texto:
-        las palabras más frecuentes aparecen con mayor tamaño, permitiendo identificar
-        los temas centrales de un corpus de manera intuitiva.
+        Una **nube de palabras** es una forma rápida y visual de ver de qué habla un texto:
+        las palabras que más se repiten aparecen más grandes, así que de un solo vistazo
+        te haces una idea de los temas principales, sin tener que leerlo todo.
         """)
 
         for icono, titulo, desc in [
-            ("📊", "Análisis de frecuencia", "Identifica los términos dominantes de cualquier corpus textual."),
-            ("🔍", "Filtrado inteligente", "Elimina palabras vacías (*stopwords*) en español e inglés."),
-            ("🎨", "Personalización visual", "Selecciona paleta, forma y densidad de la nube."),
-            ("⬇️", "Exportación", "Descarga la imagen en alta resolución y la tabla de frecuencias en CSV."),
+            ("📊", "Frecuencia de palabras", "Te mostramos qué términos se repiten más en tu texto."),
+            ("🔍", "Filtrado inteligente", "Quitamos automáticamente las palabras que no aportan (como \"de\", \"el\", \"y\"...)."),
+            ("🎨", "Tú eliges el estilo", "Elige la paleta de colores, la forma y cuántas palabras quieres ver."),
+            ("⬇️", "Te lo llevas contigo", "Descarga la imagen en buena calidad o la tabla de frecuencias en CSV."),
         ]:
             st.markdown(
                 f'<div class="info-item">'
                 f'<span style="font-size:1.3rem; flex-shrink:0;">{icono}</span>'
-                f'<div><strong style="color:#111827;">{titulo}</strong>'
-                f'<p style="margin:2px 0 0 0; color:#6b7280 !important; font-size:0.88rem;">{desc}</p></div>'
+                f'<div><strong style="color:#9a3412;">{titulo}</strong>'
+                f'<p style="margin:2px 0 0 0; color:#92603f !important; font-size:0.88rem;">{desc}</p></div>'
                 f'</div>',
                 unsafe_allow_html=True,
             )
 
-        st.markdown("#### Instrucciones")
+        st.markdown("#### ¿Cómo lo uso?")
         for i, paso in enumerate([
-            "Ingresa o sube un texto en el panel lateral.",
-            "Configura el idioma de *stopwords*, paleta y número de palabras.",
-            "Haz clic en **GENERAR NUBE ↗**.",
-            "Descarga la imagen PNG o la tabla CSV.",
+            "Escribe o pega tu texto en el panel de la izquierda (o sube un archivo).",
+            "Ajusta el idioma de las palabras vacías, la paleta y cuántas palabras quieres ver.",
+            "Dale clic a **GENERAR NUBE ↗**.",
+            "Descarga tu nube en PNG o la tabla de frecuencias en CSV.",
         ], 1):
             st.markdown(f"**{i}.** {paso}")
 
@@ -520,15 +520,15 @@ if not generar or not texto_input.strip():
 
     with col_der:
         st.markdown('<div class="section-card">', unsafe_allow_html=True)
-        st.markdown("### Aplicaciones frecuentes")
+        st.markdown("### ¿Para qué la puedes usar?")
         for caso in [
             "📰 Análisis de prensa y noticias",
             "📋 Resultados de encuestas abiertas",
             "💬 Reseñas y comentarios de clientes",
-            "🎓 Análisis de textos académicos",
-            "🗳️ Discursos y documentos políticos",
-            "📚 Estudios literarios y de corpus",
-            "📊 Informes de inteligencia de negocio",
+            "🎓 Trabajos y textos académicos",
+            "🗳️ Discursos y documentos",
+            "📚 Estudios literarios",
+            "📊 Informes de negocio",
         ]:
             st.markdown(
                 f'<span class="uso-tag">{caso}</span>',
@@ -540,15 +540,15 @@ if not generar or not texto_input.strip():
         st.markdown("### Paletas disponibles")
         for nombre in PALETAS.keys():
             st.markdown(
-                f'<div style="padding:5px 0; border-bottom:1px solid #f3f4f6;">'
-                f'<span style="color:#374151; font-size:0.88rem; font-weight:500;">{nombre}</span>'
+                f'<div style="padding:5px 0; border-bottom:1px solid #ffe4c4;">'
+                f'<span style="color:#9a3412; font-size:0.88rem; font-weight:600;">{nombre}</span>'
                 f'</div>',
                 unsafe_allow_html=True,
             )
         st.markdown('</div>', unsafe_allow_html=True)
 
     if not texto_input.strip() and generar:
-        st.warning("Ingresa un texto en el panel lateral antes de generar la nube.")
+        st.warning("Antes de generar la nube, pega o sube un texto en el panel de la izquierda 👈")
     st.stop()
 
 
@@ -562,7 +562,7 @@ if palabras_extra.strip():
 texto_limpio = limpiar_texto(texto_input, stopwords_set, min_longitud)
 
 if not texto_limpio.strip():
-    st.error("El texto resultante está vacío. Reduce la longitud mínima o cambia la configuración de stopwords.")
+    st.error("Con esta configuración no quedó ninguna palabra. Baja el largo mínimo o cambia las stopwords e inténtalo de nuevo.")
     st.stop()
 
 df_freq        = contar_palabras(texto_limpio)
@@ -573,20 +573,20 @@ vocabulario    = len(df_freq)
 m1, m2, m3, m4 = st.columns(4)
 m1.metric("Palabras procesadas",     f"{total_palabras:,}")
 m2.metric("Vocabulario único",       f"{vocabulario:,}")
-m3.metric("Término más frecuente",   df_freq.iloc[0]["Palabra"] if not df_freq.empty else "—")
-m4.metric("Frecuencia máxima",       int(df_freq.iloc[0]["Frecuencia"]) if not df_freq.empty else 0)
+m3.metric("Palabra más repetida",    df_freq.iloc[0]["Palabra"] if not df_freq.empty else "—")
+m4.metric("Veces que aparece",       int(df_freq.iloc[0]["Frecuencia"]) if not df_freq.empty else 0)
 
 st.markdown("<br>", unsafe_allow_html=True)
 
 # ── Nube ──
-with st.spinner("Generando nube de palabras..."):
+with st.spinner("Armando tu nube de palabras..."):
     fig_wc = generar_wordcloud(
         texto_limpio, paleta_sel, max_words, fondo_color,
         FORMAS[forma_sel], ancho=1000, alto=520,
     )
 
 st.markdown('<div class="wc-container">', unsafe_allow_html=True)
-st.markdown(f"**Nube de palabras** &nbsp;·&nbsp; Paleta: *{paleta_sel}* &nbsp;·&nbsp; Fondo: *{fondo_sel}* &nbsp;·&nbsp; {max_words} palabras máx.")
+st.markdown(f"**Tu nube de palabras** &nbsp;·&nbsp; Paleta: *{paleta_sel}* &nbsp;·&nbsp; Fondo: *{fondo_sel}* &nbsp;·&nbsp; hasta {max_words} palabras")
 st.pyplot(fig_wc, use_container_width=True)
 st.markdown('</div>', unsafe_allow_html=True)
 
@@ -603,7 +603,7 @@ st.divider()
 col_freq, col_tabla = st.columns([3, 2], gap="large")
 
 with col_freq:
-    st.markdown("### Frecuencia léxica — Top 20")
+    st.markdown("### Las 20 palabras que más se repiten")
     top20    = df_freq.head(20)
     max_freq = top20["Frecuencia"].max()
 
@@ -614,19 +614,19 @@ with col_freq:
         st.markdown(
             f'<div class="freq-row">'
             f'<span class="rank-tag">#{rank:02d}</span>'
-            f'<span style="font-weight:600; color:#111827; min-width:130px; font-size:0.93rem;">{p}</span>'
+            f'<span style="font-weight:600; color:#7c2d12; min-width:130px; font-size:0.93rem;">{p}</span>'
             f'<div class="freq-bar" style="width:{barra_w}px; opacity:{0.5 + 0.5*(f/max_freq):.2f};"></div>'
             f'<span style="font-family:\'IBM Plex Mono\',monospace; font-size:0.88rem; '
-            f'color:#374151; min-width:28px; text-align:right; font-weight:500;">{f}</span>'
+            f'color:#9a3412; min-width:28px; text-align:right; font-weight:600;">{f}</span>'
             f'</div>',
             unsafe_allow_html=True,
         )
 
 with col_tabla:
-    st.markdown("### Tabla de frecuencias")
+    st.markdown("### Tabla completa")
     st.dataframe(
         df_freq.head(30).style
-               .background_gradient(subset=["Frecuencia"], cmap="Greys")
+               .background_gradient(subset=["Frecuencia"], cmap="Oranges")
                .format({"Frecuencia": "{:,}"}),
         use_container_width=True, height=500,
     )
@@ -639,12 +639,12 @@ with col_tabla:
 
 st.divider()
 
-with st.expander("Ver texto procesado (tras eliminación de stopwords)"):
+with st.expander("Ver el texto ya limpio (sin las palabras vacías)"):
     preview = texto_limpio[:2500] + ("..." if len(texto_limpio) > 2500 else "")
     st.markdown(
         f'<p style="font-family:IBM Plex Mono,monospace; font-size:0.85rem; '
-        f'color:#374151; background:#f9fafb; padding:16px; border-radius:6px; '
-        f'border:1px solid #e5e7eb; line-height:1.8;">{preview}</p>',
+        f'color:#5b3a24; background:#fff3e6; padding:16px; border-radius:10px; '
+        f'border:1px solid #ffe4c4; line-height:1.8;">{preview}</p>',
         unsafe_allow_html=True,
     )
 
